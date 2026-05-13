@@ -27,7 +27,7 @@ function App(): React.ReactElement {
     PanelPage.RENDER,
   );
   const [swimlXml, setSwimlXml] = React.useState("");
-  const [htmlString, setHtmlString] = React.useState("");
+  const htmlStringRef = React.useRef("");
   const renderNode = React.useRef<HTMLIFrameElement>(null);
   const compiler = React.useMemo(() => compileSwimDsl(setSwimlXml), []);
   const languageSupport = React.useMemo(() => swimdsl(), []);
@@ -60,8 +60,7 @@ function App(): React.ReactElement {
         return (
           <ProgrammeRender
             xmlString={swimlXml}
-            htmlString={htmlString}
-            setHtmlString={setHtmlString}
+            htmlStringRef={htmlStringRef}
             nodeRef={renderNode}
           />
         );
@@ -85,7 +84,7 @@ function App(): React.ReactElement {
           swimdslProgramme={swimdslProgramme}
           setSwimdslProgramme={setSwimdslProgramme}
           swimlXml={swimlXml}
-          htmlString={htmlString}
+          htmlStringRef={htmlStringRef}
           renderNode={renderNode}
         >
           <SidePaneSwitcher

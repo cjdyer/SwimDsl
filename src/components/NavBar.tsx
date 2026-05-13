@@ -33,7 +33,7 @@ interface NavBarProps {
   swimdslProgramme: string;
   setSwimdslProgramme: React.Dispatch<React.SetStateAction<string>>;
   swimlXml: string;
-  htmlString: string;
+  htmlStringRef: React.RefObject<string>;
   renderNode: React.RefObject<HTMLIFrameElement | null>;
   children?: React.ReactNode;
 }
@@ -54,7 +54,7 @@ function NavBar({
   swimdslProgramme,
   setSwimdslProgramme,
   swimlXml,
-  htmlString,
+  htmlStringRef,
   renderNode,
   children,
 }: NavBarProps): React.ReactElement {
@@ -104,7 +104,7 @@ function NavBar({
       text: "Export HTML",
       icon: <CodeIcon fontSize="small" />,
       onclick: () => {
-        downloadHtml(htmlString);
+        downloadHtml(htmlStringRef.current);
       },
     },
     {
